@@ -11,11 +11,11 @@ export default {
     },
     methods: {
         getMovie(){
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + requestedMovie.replaceAll('', '+'))
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + this.requestedMovie.replaceAll('', '+'))
             .then(function (response) {
                 // handle success
                 console.log(response);
-                store.SearchedMovie = response;
+                store.SearchedMovie = response.data.results;
             })
             .catch(function (error) {
                 // handle error
@@ -36,7 +36,7 @@ export default {
 
 <ul>
     <li v-for="(movie, index) in store.SearchedMovie" :key="index">
-        {{ store.SearchedMovie.title }}
+        {{ movie.title }}
     </li>
 </ul>
 </template>
