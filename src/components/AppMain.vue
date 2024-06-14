@@ -1,19 +1,15 @@
 <script>
-import AppMain from './components/AppMain.vue'
+import axios from 'axios';
 
 export default {
-  data(){
+    data(){
     return{}
-  },
-  components: {
-    AppMain,
-    
-  }
+    }
 }
 </script>
 
 <template>
-<AppMain/>
+
 </template>
 
 <style lang="scss">
