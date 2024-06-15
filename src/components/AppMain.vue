@@ -24,6 +24,9 @@ export default {
             .finally(function () {
                 // always executed
             });
+        },
+        getImagePath: function (imgPath) {
+            return new URL(imgPath, import.meta.url).href;
         }
     }
 }
@@ -43,7 +46,7 @@ export default {
             Titolo originale : {{ movie.original_title }}
         </p>
         <p>
-            Lingua : {{ movie.original_language }}
+            Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
         </p>
         <p>
             Voto : {{ movie.vote_average.toFixed(2) }}
@@ -55,4 +58,9 @@ export default {
 <style lang="scss">
 
 @use '../styles/general.scss';
+
+
+img{
+    width: 20px;
+}
 </style>
