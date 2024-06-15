@@ -11,10 +11,10 @@ export default {
     },
     methods: {
         getMovie(){
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + this.requestedMovie.replaceAll('', '+'))
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + this.requestedMovie)
             .then(function (response) {
                 // handle success
-                console.log(response);
+                console.log(response.data.results);
                 store.SearchedMovie = response.data.results;
             })
             .catch(function (error) {
@@ -36,7 +36,18 @@ export default {
 
 <ul>
     <li v-for="(movie, index) in store.SearchedMovie" :key="index">
-        {{ movie.title }}
+        <p>
+            Titolo : {{ movie.title }} 
+        </p>
+        <p>
+            Titolo originale : {{ movie.original_title }}
+        </p>
+        <p>
+            Lingua : {{ movie.original_language }}
+        </p>
+        <p>
+            Voto : {{ movie.vote_average.toFixed(2) }}
+        </p>
     </li>
 </ul>
 </template>
