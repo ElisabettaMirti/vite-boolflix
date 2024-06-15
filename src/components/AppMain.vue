@@ -34,7 +34,7 @@ export default {
 
 <template>
 <label for="name">Search a movie:</label>
-<input type="text" id="name" v-model="this.requestedMovie"/>
+<input type="text" id="name" v-model="this.requestedMovie" @keyup.enter="getMovie()"/>
 <input type="button" value="Cerca" @click="getMovie()"/>
 
 <ul>
