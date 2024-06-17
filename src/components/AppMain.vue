@@ -14,7 +14,18 @@ export default {
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + this.requestedMovie)
             .then(function (response) {
                 // handle success
-                console.log(response.data.results);
+                store.SearchedMovie = response.data.results;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+            axios.get('https://api.themoviedb.org/3/search/tv?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it_IT&query=' + this.requestedMovie)
+            .then(function (response) {
+                // handle success
                 store.SearchedMovie = response.data.results;
             })
             .catch(function (error) {
@@ -40,10 +51,10 @@ export default {
 <ul>
     <li v-for="(movie, index) in store.SearchedMovie" :key="index">
         <p>
-            Titolo : {{ movie.title }} 
+            Titolo : {{ movie.title || movie.name }} 
         </p>
-        <p>
-            Titolo originale : {{ movie.original_title }}
+        <p v-show="movie.title !== movie.original_title || movie.name !== movie.original_name">
+            Titolo originale : {{ movie.original_title || movie.original_name }}
         </p>
         <p>
             Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
