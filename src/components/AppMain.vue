@@ -38,6 +38,10 @@ export default {
         },
         getImagePath: function (imgPath) {
             return new URL(imgPath, import.meta.url).href;
+        },
+        getMovieImg: function (imgData) {
+            let imgLink = 'https://image.tmdb.org/t/p/w500' + imgData;
+            return imgLink;
         }
     }
 }
@@ -62,6 +66,7 @@ export default {
         <p>
             Voto : {{ movie.vote_average.toFixed(2) }}
         </p>
+        <img class="movie-poster" :src="getMovieImg(movie.poster_path)" :alt="movie.title || movie.name + ' poster'">
     </li>
 </ul>
 </template>
@@ -73,5 +78,9 @@ export default {
 
 img{
     width: 20px;
+}
+
+img.movie-poster{
+    width: 300px;
 }
 </style>
