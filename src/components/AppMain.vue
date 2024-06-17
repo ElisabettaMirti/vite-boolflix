@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import {store} from '../store.js';
+import SingleArticle from './SingleArticle.vue'
 
 export default {
     data(){
@@ -8,6 +9,9 @@ export default {
             store,
             requestedMovie: ''
         }
+    },
+    components: {
+        SingleArticle
     },
     methods: {
         getMovie(){
@@ -42,6 +46,11 @@ export default {
         getMovieImg: function (imgData) {
             let imgLink = 'https://image.tmdb.org/t/p/w500' + imgData;
             return imgLink;
+        },
+        getStarRate: function (MovieRate) {
+            let stars = store.SearchedMovie.vote_average;
+            stars = Number.parseInte(MovieRate) / 2;
+            return stars;
         }
     }
 }
@@ -52,23 +61,9 @@ export default {
 <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
 <input type="button" value="Cerca" @click="getMovie()"/>
 
-<ul>
-    <li v-for="(movie, index) in store.SearchedMovie" :key="index">
-        <p>
-            Titolo : {{ movie.title || movie.name }} 
-        </p>
-        <p v-show="movie.title !== movie.original_title || movie.name !== movie.original_name">
-            Titolo originale : {{ movie.original_title || movie.original_name }}
-        </p>
-        <p>
-            Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
-        </p>
-        <p>
-            Voto : {{ movie.vote_average.toFixed(2) }}
-        </p>
-        <img class="movie-poster" :src="getMovieImg(movie.poster_path)" :alt="movie.title || movie.name + ' poster'">
-    </li>
-</ul>
+<div class="movie-conainer">
+    <SingleArticle v-for="(movie, index) in store.SearchedMovie" :key="index" :movie="movie"/>
+</div>
 </template>
 
 <style lang="scss">
@@ -84,11 +79,10 @@ img.movie-poster{
     width: 300px;
 }
 
-li{
+article{
     border: 1px solid grey;
     border-radius: .5rem;
     margin-bottom: 1rem;
     padding: 1rem;
-    list-style-type: none;
 }
 </style>
