@@ -83,4 +83,12 @@ img{
 img.movie-poster{
     width: 300px;
 }
+
+li{
+    border: 1px solid grey;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    list-style-type: none;
+}
 </style>
