@@ -31,27 +31,36 @@ export default {
 
 <template>
 
-<p>
-    Titolo : {{ movie.title || movie.name }} 
-</p>
-<p v-show="movie.title !== movie.original_title || movie.name !== movie.original_name">
-    Titolo originale : {{ movie.original_title || movie.original_name }}
-</p>
-<p>
-    Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
-</p>
-<p>
-    <span>Voto : </span>            
-    <i v-for="star in (Math.ceil(store.SearchedMovie.vote_average / 2))" :key="star" class="fa-solid fa-star"></i>
-</p>
-<img class="movie-poster" :src="getMovieImg(movie.poster_path)" :alt="movie.title || movie.name + ' poster'">
+<article>
+    <p>
+        Titolo : {{ movie.title || movie.name }} 
+    </p>
+    <p v-show="movie.title !== movie.original_title || movie.name !== movie.original_name">
+        Titolo originale : {{ movie.original_title || movie.original_name }}
+    </p>
+    <p>
+        Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
+    </p>
+    <p>
+        <span>Voto : </span>            
+        <i v-for="(star, index) in (Math.ceil(movie.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
+    </p>
+    <img class="movie-poster" :src="getMovieImg(movie.poster_path)" :alt="movie.title || movie.name + ' poster'">
 
+</article>
 
 </template>
 
 <style lang="scss" scoped>
 
 @use '../styles/general.scss';
+
+article{
+    border: 1px solid grey;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
 
 img{
     width: 20px;
@@ -60,4 +69,5 @@ img{
 img.movie-poster{
     width: 300px;
 }
+
 </style>

@@ -61,8 +61,8 @@ export default {
 <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
 <input type="button" value="Cerca" @click="getMovie()"/>
 
-<div class="movie-conainer">
-    <SingleArticle v-for="(movie, index) in store.SearchedMovie" :key="index" :movie="movie"/>
+<div class="movie-container">
+    <SingleArticle v-for="(element, index) in store.SearchedMovie" :key="index" :movie="element"/>
 </div>
 </template>
 
@@ -70,19 +70,4 @@ export default {
 
 @use '../styles/general.scss';
 
-
-img{
-    width: 20px;
-}
-
-img.movie-poster{
-    width: 300px;
-}
-
-article{
-    border: 1px solid grey;
-    border-radius: .5rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-}
 </style>
