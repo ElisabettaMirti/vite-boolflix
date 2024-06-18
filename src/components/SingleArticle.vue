@@ -54,6 +54,9 @@ export default {
                 <i v-for="(star, index) in (Math.ceil(movie.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
                 <i v-for="(star, index) in (5 - Math.ceil(movie.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
             </p>
+            <p>
+                Overview : {{ movie.overview }}
+            </p>
         </div>       
     </article>
 
