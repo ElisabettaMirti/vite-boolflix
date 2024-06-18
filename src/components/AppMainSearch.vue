@@ -1,0 +1,59 @@
+<script>
+import {store} from '../store.js';
+import axios from 'axios';
+
+export default {
+    data(){
+        return{
+            store,
+            requestedMovie: ''
+        }
+    },
+    components: {
+        
+    },
+    props: {
+    },
+    methods: {
+        getMovie(){
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&query=' + this.requestedMovie)
+            .then(function (response) {
+                // handle success
+                store.SearchedMovie = response.data.results;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+            axios.get('https://api.themoviedb.org/3/search/tv?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it_IT&query=' + this.requestedMovie)
+            .then(function (response) {
+                // handle success
+                store.SearchedMovie = response.data.results;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+        }
+    }
+}
+</script>
+
+<template>
+<div class="searchbar">
+    <label for="name">Search a movie:</label>
+    <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
+    <input type="button" value="Cerca" @click="getMovie()"/>
+</div>
+</template>
+
+<style lang="scss" scoped>
+@use '../styles/general.scss';
+
+</style>
