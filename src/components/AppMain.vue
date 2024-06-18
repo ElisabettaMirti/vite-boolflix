@@ -41,21 +41,13 @@ export default {
 <template>
 <AppHeader/>
 
-<div class="movie-container">    
-    <SingleArticle v-if="store.SearchedMovie.length > 0" v-for="(element, index) in store.SearchedMovie" :key="index" :movie="element"/>
-    <MainTrending v-else v-for="(element, i) in store.TrendingShow" :key="i" :element="element"/>    
-</div>
+<SingleArticle v-if="store.SearchedMovie.length > 0"/>
+<MainTrending v-else />    
+
 </template>
 
 <style lang="scss">
 @use '../styles/general.scss';
 
-div.movie-container{
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 2rem;
-}
 
 </style>

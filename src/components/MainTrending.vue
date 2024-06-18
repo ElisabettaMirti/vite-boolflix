@@ -12,10 +12,6 @@ export default {
         
     },
     props: { 
-        element: {
-            type: Object,
-            required: true
-        }
     },
     methods: {
         getImagePath: function (imgPath) {
@@ -31,29 +27,35 @@ export default {
 
 <template>
 
-<article>
-    <div>
-        <img class="movie-poster" :src="getMovieImg(element.poster_path)" :alt="element.title || element.name + ' poster'">
-    </div>
+<h1>In tendenza</h1>
 
-    <div class="card-back">
-        <p>
-            Titolo : {{element.title || element.name }} 
-        </p>
-        <p v-show="element.title !== element.original_title || element.name !== element.original_name">
-            Titolo originale : {{ element.original_title || element.original_name }}
-        </p>
-        <p>
-            Lingua : <img :src="getImagePath(`../assets/img/${element.original_language}.png`)" :alt="element.original_language">
-        </p>
-        <p>
-            <span>Voto : </span>            
-            <i v-for="(star, index) in (Math.ceil(element.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
-        </p>
-    </div>
-    
-    
-</article>
+<div class="movie-container">
+    <article v-for="(element, i) in store.TrendingShow" :key="i">
+        <div>
+            <img class="movie-poster" v-if="element.poster_path == null"  src="..//assets/img/img_not_found.jpg" alt="Image not found">
+            <img class="movie-poster" v-else :src="getMovieImg(element.poster_path)" :alt="element.title || element.name + ' poster'">
+        </div>
+
+        <div class="card-back">
+            <p>
+                Titolo : {{element.title || element.name }} 
+            </p>
+            <p v-show="element.title !== element.original_title || element.name !== element.original_name">
+                Titolo originale : {{ element.original_title || element.original_name }}
+            </p>
+            <p>
+                Lingua : <img :src="getImagePath(`../assets/img/${element.original_language}.png`)" :alt="element.original_language">
+            </p>
+            <p>
+                <span>Voto : </span>            
+                <i v-for="(star, index) in (Math.ceil(element.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
+                <i v-for="(star, index) in (5 - Math.floor(element.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
+            </p>
+        </div>  
+        
+    </article>
+</div>
+
 
 </template>
 
@@ -61,10 +63,18 @@ export default {
 
 @use '../styles/general.scss';
 
+div.movie-container{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 0 2rem;
+    overflow-y: scroll;
+}
 
 
 article{
     margin-bottom: 3rem;
+    margin-right: 1rem;
     width: calc((100vw / 6) - 1rem);
     position: relative;
 
