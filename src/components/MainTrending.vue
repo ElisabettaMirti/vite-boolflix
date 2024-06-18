@@ -31,12 +31,12 @@ export default {
 
 <template>
 
-<article class="card">
-    <div class="card-content card-front">
+<article>
+    <div>
         <img class="movie-poster" :src="getMovieImg(element.poster_path)" :alt="element.title || element.name + ' poster'">
     </div>
 
-    <div class="info card-content card-back">
+    <div class="card-back">
         <p>
             Titolo : {{element.title || element.name }} 
         </p>
@@ -65,38 +65,26 @@ export default {
 
 article{
     margin-bottom: 3rem;
-    padding: 1rem;
-    width: calc((100vw / 5) - 1rem);
-    height: 450px;
-}
+    width: calc((100vw / 6) - 1rem);
+    position: relative;
 
-.card {
-    perspective: 1000px;
-    width: 300px;
-    position:relative;
-}
-
-.card-content {
-    box-shadow: 0 2rem 2rem rgba(0, 0, 0, .5);
-    transition: all 2s;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height: 100%;
-    backface-visibility: hidden;
+    &:hover div.card-back{            
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding: 2rem .5rem;
+        background-color: rgb(0, 0, 0, 0.8);
+        animation: card_info .5s linear;        
+    }
 }
 
 .card-back{
-    transform:rotateY(180deg);
-}
-
-.card:hover .card-front {
-    transform: rotateY(-180deg);
-}
-
-.card:hover .card-back {
-    transform: rotateY(0);
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: -moz-available;
+    bottom: 0;
+    left: 0;
 }
 
 
@@ -105,7 +93,20 @@ img{
 }
 
 img.movie-poster{
-    width: 100%;
+    width: calc((100vw / 6) - 1rem);
+}
+
+
+@keyframes card_info {
+    0%{
+        height: 0%;
+        background-color:rgb(0, 0, 0, 0.1);
+    }
+    100%{
+        height: 100%;
+        background-color:rgb(0, 0, 0, 0.8);
+    }
+    
 }
 
 </style>
