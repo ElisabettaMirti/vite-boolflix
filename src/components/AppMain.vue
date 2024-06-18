@@ -1,7 +1,8 @@
 <script>
 import axios from 'axios';
 import {store} from '../store.js';
-import SingleArticle from './SingleArticle.vue'
+import SingleArticle from './SingleArticle.vue';
+import MainTrending from './MainTrending.vue'
 
 export default {
     data(){
@@ -11,7 +12,8 @@ export default {
         }
     },
     components: {
-        SingleArticle
+        SingleArticle,
+        MainTrending
     },
     methods: {
         getMovie(){
@@ -47,11 +49,23 @@ export default {
             let imgLink = 'https://image.tmdb.org/t/p/w500' + imgData;
             return imgLink;
         },
-        getStarRate: function (MovieRate) {
-            let stars = store.SearchedMovie.vote_average;
-            stars = Number.parseInte(MovieRate) / 2;
-            return stars;
+        getTrending: function(){
+            axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it')
+            .then(function (response) {
+                // handle success
+                store.TrendingShow = response.data.results;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
         }
+    },
+    created(){
+        this.getTrending();
     }
 }
 </script>
@@ -62,7 +76,9 @@ export default {
 <input type="button" value="Cerca" @click="getMovie()"/>
 
 <div class="movie-container">
-    <SingleArticle v-for="(element, index) in store.SearchedMovie" :key="index" :movie="element"/>
+    
+    <SingleArticle v-if="store.SearchedMovie.length > 0" v-for="(element, index) in store.SearchedMovie" :key="index" :movie="element"/>
+    <MainTrending v-else v-for="(element, i) in store.TrendingShow" :key="i" :element="element"/>    
 </div>
 </template>
 
