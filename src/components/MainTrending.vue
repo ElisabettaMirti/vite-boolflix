@@ -52,7 +52,7 @@ export default {
             <p>
                 <span>Voto : </span>            
                 <i v-for="(star, index) in (Math.ceil(element.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
-                <i v-for="(star, index) in (5 - Math.floor(element.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
+                <i v-for="(star, index) in (5 - Math.ceil(element.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
             </p>
         </div>  
         
@@ -84,7 +84,7 @@ export default {
             <p>
                 <span>Voto : </span>            
                 <i v-for="(star, index) in (Math.ceil(element.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
-                <i v-for="(star, index) in (5 - Math.floor(element.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
+                <i v-for="(star, index) in (5 - Math.ceil(element.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
             </p>
         </div>  
         

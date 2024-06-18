@@ -57,9 +57,26 @@ export default {
 
 input{
     width: 250px;
-    margin-right: 1rem;
+    margin-right: 2rem;
     padding: .3rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #4f4f4f;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+    color: white;
+
+    &:focus{
+        background-color: white;
+        color: black;
+        transform: scale(1.05);
+        box-shadow: 13px 13px 100px #969696,
+                    -3px -3px 10px #ffffff;
+    }
 }
+
 
 i{
     margin-right: 3rem;

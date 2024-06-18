@@ -52,7 +52,7 @@ export default {
             <p>
                 <span>Voto : </span>            
                 <i v-for="(star, index) in (Math.ceil(movie.vote_average / 2))" :key="index" class="fa-solid fa-star"></i>
-                <i v-for="(star, index) in (5 - Math.floor(movie.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
+                <i v-for="(star, index) in (5 - Math.ceil(movie.vote_average / 2))" :key="index" class="fa-regular fa-star"></i>
             </p>
         </div>       
     </article>
