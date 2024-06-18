@@ -57,7 +57,7 @@ export default {
 
 input{
     width: 250px;
-    margin-right: .5rem;
+    margin-right: 1rem;
     padding: .3rem;
 }
 

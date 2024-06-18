@@ -48,7 +48,14 @@ export default {
 </template>
 
 <style lang="scss">
-
 @use '../styles/general.scss';
+
+div.movie-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 2rem;
+}
 
 </style>
