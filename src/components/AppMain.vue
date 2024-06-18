@@ -52,7 +52,7 @@ export default {
 
 div.movie-container{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 0 2rem;
