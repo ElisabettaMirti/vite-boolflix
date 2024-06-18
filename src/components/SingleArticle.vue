@@ -26,7 +26,7 @@ export default {
 
 <template>
 
-<h1></h1>
+<h1>Risultati della ricerca</h1>
 
 <div class="movie-container">
     <article  v-for="(movie, index) in store.SearchedMovie" :key="index">
@@ -38,13 +38,16 @@ export default {
 
         <div class="card-back">
             <p>
-                Titolo : {{ movie.title || movie.name }} 
+                Titolo : <strong class="title"> {{ movie.title || movie.name }} </strong> 
             </p>
             <p v-show="movie.title !== movie.original_title || movie.name !== movie.original_name">
                 Titolo originale : {{ movie.original_title || movie.original_name }}
             </p>
-            <p>
-                Lingua : <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
+            <p class="lang">
+                <span>Lingua originale: </span>
+                <span>
+                    <img :src="getImagePath(`../assets/img/${movie.original_language}.png`)" :alt="movie.original_language">
+                </span>
             </p>
             <p>
                 <span>Voto : </span>            
@@ -71,19 +74,43 @@ div.movie-container{
     overflow-y: scroll;
 }
 
+h1{
+    margin: 2rem;
+}
+
+p{
+    font-size: .8rem;
+    margin-bottom: .5rem;
+}
+
+p.lang{
+    display: flex;
+    align-items: center;
+
+    span{
+        margin-right: .3rem;
+    }
+}
+
+.title{
+    font-size: 1rem;
+}
 
 article{
     margin-bottom: 3rem;
     margin-right: 1rem;
     width: calc((100vw / 6) - 1rem);
     position: relative;
+    cursor: pointer;
 
     &:hover div.card-back{            
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         padding: 2rem .5rem;
-        background-color: rgb(0, 0, 0, 0.8);
+        background-color: rgb(0, 0, 0, 0.85);
         animation: card_info .5s linear;        
     }
 }
@@ -103,6 +130,18 @@ img{
 
 img.movie-poster{
     width: calc((100vw / 6) - 1rem);
+}
+
+@keyframes card_info {
+    0%{
+        height: 0%;
+        background-color:rgb(0, 0, 0, 0.1);
+    }
+    100%{
+        height: 100%;
+        background-color:rgb(0, 0, 0, 0.8);
+    }
+    
 }
 
 </style>

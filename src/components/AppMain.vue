@@ -30,10 +30,26 @@ export default {
             .finally(function () {
                 // always executed
             });
+        },
+
+        getSuggested: function(){
+            axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=77858b6fb6570fc530c9dcb381e6d68f&language=it&page=2')
+            .then(function (response) {
+                // handle success
+                store.suggested = response.data.results;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
         }
     },
     created(){
         this.getTrending();
+        this.getSuggested();
     }
 }
 </script>
