@@ -3,7 +3,7 @@ import axios from 'axios';
 import {store} from '../store.js';
 import SingleArticle from './SingleArticle.vue';
 import MainTrending from './MainTrending.vue';
-import AppHeader from "./AppHeader.vue"
+import AppHeader from './AppHeader.vue'
 
 export default {
     data(){

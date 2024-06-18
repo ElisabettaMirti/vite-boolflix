@@ -21,7 +21,7 @@ export default {
             return new URL(imgPath, import.meta.url).href;
         },
         getMovieImg: function (imgData) {
-            let imgLink = 'https://image.tmdb.org/t/p/w500' + imgData;
+            let imgLink = 'https://image.tmdb.org/t/p/w342' + imgData;
             return imgLink;
         },
     }

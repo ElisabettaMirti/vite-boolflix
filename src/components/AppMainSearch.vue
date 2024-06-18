@@ -47,13 +47,22 @@ export default {
 
 <template>
 <div class="searchbar">
-    <label for="name">Search a movie:</label>
-    <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
-    <input type="button" value="Cerca" @click="getMovie()"/>
+    <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()" placeholder="Cerca un film o una serie"/>
+    <i class="fa-solid fa-magnifying-glass"></i>
 </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
+
+input{
+    width: 250px;
+    margin-right: .5rem;
+    padding: .3rem;
+}
+
+i{
+    margin-right: 3rem;
+}
 
 </style>
