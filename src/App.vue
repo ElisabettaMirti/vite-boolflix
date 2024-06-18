@@ -1,5 +1,6 @@
 <script>
-import AppMain from './components/AppMain.vue'
+import AppMain from './components/AppMain.vue';
+import "@fontsource/roboto";
 
 export default {
   data(){

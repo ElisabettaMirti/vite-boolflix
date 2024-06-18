@@ -2,7 +2,8 @@
 import axios from 'axios';
 import {store} from '../store.js';
 import SingleArticle from './SingleArticle.vue';
-import MainTrending from './MainTrending.vue'
+import MainTrending from './MainTrending.vue';
+import AppHeader from "./AppHeader.vue"
 
 export default {
     data(){
@@ -13,7 +14,8 @@ export default {
     },
     components: {
         SingleArticle,
-        MainTrending
+        MainTrending,
+        AppHeader
     },
     methods: {
         getMovie(){
@@ -71,12 +73,17 @@ export default {
 </script>
 
 <template>
-<label for="name">Search a movie:</label>
-<input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
-<input type="button" value="Cerca" @click="getMovie()"/>
+<AppHeader/>
 
-<div class="movie-container">
-    
+<div class="searchbar">
+    <label for="name">Search a movie:</label>
+    <input type="text" id="name" v-model="this.requestedMovie" @keyup="getMovie()"/>
+    <input type="button" value="Cerca" @click="getMovie()"/>
+</div>
+
+
+
+<div class="movie-container">    
     <SingleArticle v-if="store.SearchedMovie.length > 0" v-for="(element, index) in store.SearchedMovie" :key="index" :movie="element"/>
     <MainTrending v-else v-for="(element, i) in store.TrendingShow" :key="i" :element="element"/>    
 </div>
